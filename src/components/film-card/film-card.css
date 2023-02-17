@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+
+.film-card {
+    display: flex;
+    width: 480px;
+    height: 300px;
+    box-shadow: 5px 5px 10px #D9D9D9;
+    margin-top: 15px;
+    font-family: 'Inter', sans-serif;
+}
+
+.film-card__poster {
+    margin-right: 20px;
+}
+
+.film-card__head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.film-card__h1 {
+    margin: 10px 0 7px 0;
+}
+
+.film-card__data {
+    margin: 0 0 10px 0;
+    color: #827E7E;
+}
+
+.film-card__rating {
+    margin: 10px 10px 0 0;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #E9D100;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.film-card__description {
+    line-height: 1.5em;
+    font-size: 14px;
+    margin: 7px 30px 0 0;
+}
+
+.ant-rate-star {
+    width: 17px;
+    margin-top: 7px;
+}

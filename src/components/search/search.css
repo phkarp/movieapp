@@ -1,0 +1,38 @@
+.search {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.search__tab-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.search__tab-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 53px;
+    width: 65px;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.search__tab {
+    display: none;
+}
+
+.search__tab-label:has(input[type=radio]:checked)  {
+    color: #1890FF;
+    border-bottom: 2px solid #1890FF;
+}
+
+.search__field {
+    width: 938px;
+    height: 35px;
+    margin: 0;
+    padding: 0 0 0 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
