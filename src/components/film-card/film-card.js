@@ -1,24 +1,62 @@
 import { Rate, Space, Tag } from 'antd';
+import { format } from 'date-fns';
 import { Component } from 'react';
 import './film-card.css';
 
 export default class FilmCard extends Component {
+  cutText(str, maxLength) {
+    let newStr = str.slice();
+    if (newStr.length > maxLength) {
+      const newLength = newStr.lastIndexOf(' ', maxLength - 3);
+      newStr = `${str.slice(0, newLength)}...`;
+    }
+    return newStr;
+  }
+
   render() {
+    const { film } = this.props;
+    const { overview, poster_path } = film;
+
+    let releaseDate = film['release_date'];
+    if (releaseDate) {
+      releaseDate = format(new Date(releaseDate), 'MMMM d, u');
+    } else {
+      releaseDate = `дата релиза неизвестна`;
+    }
+
+    let imageUrl = poster_path;
+    if (poster_path) {
+      imageUrl = `https://image.tmdb.org/t/p/original${imageUrl}`;
+    } else {
+      imageUrl = `https://i.postimg.cc/Z5qQpwWG/no-photo.png`;
+    }
+
+    let description = overview;
+    let title = film.title;
+    let lengthDescription = 170;
+    if (title.length < 15) {
+      lengthDescription = 220;
+    }
+    if (title.length > 30) {
+      lengthDescription = 130;
+    }
+    if (title.length > 50) {
+      lengthDescription = 100;
+      title = this.cutText(title, 50);
+    }
+    description = this.cutText(description, lengthDescription);
+
+    // console.log(film);
     return (
       <article className="film-card">
         <div className="film-card__poster">
-          <img
-            src="https://disco-mania.ru/upload/iblock/099/p9z3i6w10nypvepfe7b77d6yh0ysre1h.jpg"
-            alt=""
-            width="183px"
-            height="300px"
-          />
+          <img src={imageUrl} alt="" width="183px" height="300px" />
         </div>
-        <div>
+        <div className="film-card__body">
           <div className="film-card__head">
             <div>
-              <h1 className="film-card__h1">The way back</h1>
-              <p className="film-card__data">March 5, 2020 </p>
+              <h1 className="film-card__h1">{title}</h1>
+              <p className="film-card__data">{releaseDate}</p>
               <Space size={[0, 8]} wrap>
                 <Tag>Action</Tag>
                 <Tag>Drama</Tag>
@@ -26,11 +64,8 @@ export default class FilmCard extends Component {
             </div>
             <div className="film-card__rating">6.6</div>
           </div>
-          <div>
-            <p className="film-card__description">
-              A former basketball all-star, who has lost his wife and family foundation in a struggle with addiction
-              attempts to regain his soul and salvation by becoming the coach of a disparate ethnically mixed high ...
-            </p>
+          <div className="film-card__foot">
+            <p className="film-card__description">{description}</p>
             <Rate allowHalf defaultValue={2.5} count={10} />
           </div>
         </div>
