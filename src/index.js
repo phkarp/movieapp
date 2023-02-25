@@ -12,22 +12,11 @@ class App extends Component {
     url: 'https://api.themoviedb.org/3/search/movie?api_key=94f42cb5addddd4b06406efe51a662ce&query=return',
   };
 
-  createRequest(url) {
-    async function request(url) {
-      return await fetch(url)
-        .then(resolve => resolve.json())
-        .then(result => result.results);
-    }
-    return request(url);
-  }
-
   componentDidMount() {
     const url = this.state.url;
 
-    this.createRequest(url).then(resultSearch => {
-      this.setState(state => {
-        return { films: resultSearch };
-      });
+    getFilms(url).then(resultSearch => {
+      this.setState({ films: resultSearch });
       return resultSearch;
     });
   }
@@ -36,7 +25,7 @@ class App extends Component {
     const { films } = this.state;
     if (!films.length) {
       const url = this.state.url;
-      this.createRequest(url).then(resultSearch => this.setState({ films: resultSearch }));
+      getFilms(url).then(resultSearch => this.setState({ films: resultSearch }));
     }
 
     return (
@@ -48,6 +37,12 @@ class App extends Component {
     );
   }
 }
+
+const getFilms = async url => {
+  return await fetch(url)
+    .then(resolve => resolve.json())
+    .then(result => result.results);
+};
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
