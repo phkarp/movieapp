@@ -1,6 +1,7 @@
 import { Rate, Space, Tag } from 'antd';
 import { format } from 'date-fns';
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
+
 import './film-card.css';
 
 export default class FilmCard extends Component {
@@ -49,27 +50,35 @@ export default class FilmCard extends Component {
     // console.log(film);
     return (
       <article className="film-card">
-        <div className="film-card__poster">
-          <img src={imageUrl} alt="" width="183px" height="300px" />
-        </div>
-        <div className="film-card__body">
-          <div className="film-card__head">
-            <div>
-              <h1 className="film-card__h1">{title}</h1>
-              <p className="film-card__data">{releaseDate}</p>
-              <Space size={[0, 8]} wrap>
-                <Tag>Action</Tag>
-                <Tag>Drama</Tag>
-              </Space>
-            </div>
-            <div className="film-card__rating">6.6</div>
-          </div>
-          <div className="film-card__foot">
-            <p className="film-card__description">{description}</p>
-            <Rate allowHalf defaultValue={2.5} count={10} />
-          </div>
-        </div>
+        <BodyCard imageUrl={imageUrl} title={title} releaseDate={releaseDate} description={description} />
       </article>
     );
   }
 }
+
+const BodyCard = ({ imageUrl, title, releaseDate, description }) => {
+  return (
+    <Fragment>
+      <div className="film-card__poster">
+        <img src={imageUrl} alt="" width="183px" height="300px" />
+      </div>
+      <div className="film-card__body">
+        <div className="film-card__head">
+          <div>
+            <h1 className="film-card__h1">{title}</h1>
+            <p className="film-card__data">{releaseDate}</p>
+            <Space size={[0, 8]} wrap>
+              <Tag>Action</Tag>
+              <Tag>Drama</Tag>
+            </Space>
+          </div>
+          <div className="film-card__rating">6.6</div>
+        </div>
+        <div className="film-card__foot">
+          <p className="film-card__description">{description}</p>
+          <Rate allowHalf defaultValue={2.5} count={10} />
+        </div>
+      </div>
+    </Fragment>
+  );
+};
