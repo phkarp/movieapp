@@ -11,12 +11,7 @@ export default class FilmsContainer extends Component {
   render() {
     const { films } = this.props;
 
-    const filmCard = films
-      .slice()
-      .filter((film, i) => {
-        return i < 6;
-      })
-      .map((film, i) => <FilmCard film={film} key={'key' + i} />);
+    const filmCard = films.slice().map((film, i) => <FilmCard film={film} key={'key' + i} />);
 
     return <div className="container">{filmCard}</div>;
   }

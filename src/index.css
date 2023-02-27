@@ -1,9 +1,20 @@
 .movies-body {
     display: flex;
     width: 1050px;
-    justify-content: space-around;
     margin: 0 auto;
-    flex-wrap: wrap;
     background: #ffffff;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
+
+    flex-direction: column;
+}
+
+.ant-pagination {
+    align-self: center;
+}
+
+.not-found {
+    display: block;
+    margin: 50px 0 0 400px;
+    height: 100%;
 }
