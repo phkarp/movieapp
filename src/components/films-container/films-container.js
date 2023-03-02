@@ -9,9 +9,11 @@ export default class FilmsContainer extends Component {
   };
 
   render() {
-    const { films } = this.props;
+    const { films, onChangeRate, ratedFilms } = this.props;
 
-    const filmCard = films.slice().map((film, i) => <FilmCard film={film} key={'key' + i} />);
+    const filmCard = films
+      .slice()
+      .map((film, i) => <FilmCard film={film} key={'key' + i} onChangeRate={onChangeRate} ratedFilms={ratedFilms} />);
 
     return <div className="container">{filmCard}</div>;
   }

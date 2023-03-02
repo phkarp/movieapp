@@ -1,7 +1,7 @@
 import { Space, Spin } from 'antd';
-import './loading.css';
+import './loader.css';
 
-const Loading = () => (
+const Loader = () => (
   <Space
     direction="vertical"
     style={{
@@ -9,8 +9,8 @@ const Loading = () => (
     }}
     size="large"
   >
-    <Spin tip="Loading" size="large" className="content"></Spin>
+    <Spin tip="Loader" size="large" className="content"></Spin>
   </Space>
 );
 
-export default Loading;
+export default Loader;
